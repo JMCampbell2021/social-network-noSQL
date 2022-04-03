@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose')
+const { Schema } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const thoughtSchema = new Schema (
   {
@@ -10,7 +11,8 @@ const thoughtSchema = new Schema (
     },
     createdAt:{
       type: Date,
-      default: Date.now
+      default: Date.now,
+      get: (createdAtVal) => dateFormat(createdAtVal),
     },
     // need to connect user that created this thought
     username: {
@@ -22,7 +24,12 @@ const thoughtSchema = new Schema (
 
     },
   },
-)
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
+);
 
 const Thought = module('Thought', thoughtSchema)
 

@@ -1,13 +1,16 @@
-const { Schema } = require('mongoose')
+const { Schema } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const ReactionSchema = new Schema (
   {
     reactionId:{
-      
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
     },
     createdAt:{
       type: Date,
-      default: Date.now
+      default: Date.now,
+      get: (createdAtVal) => dateFormat(createdAtVal)
     },
     // need to connect user that created this thought
     username: {
@@ -19,7 +22,12 @@ const ReactionSchema = new Schema (
 
     },
   },
-)
+  {
+    toJSON: {
+      getters: true,
+    }
+  }
+);
 
 const Reaction = module('Reaction', ReactionSchema)
 
