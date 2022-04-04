@@ -1,11 +1,11 @@
-const { user } = require('../models');
+const { User } = require('../models');
 
 const userController = {
   // get all users
   getAllUser(req, res) {
-    user.find({})
+    User.find({})
     .populate({
-      path: 'comments',
+      path: 'thoughts',
       select: '-__v'
     })
     .select('-__v')
@@ -18,9 +18,9 @@ const userController = {
   },
   // get one user by id
   getUserById({ params }, res) {
-    user.findOne({ _id: params.id })
+    User.findOne({ _id: params.id })
     .populate({
-      path: 'comments',
+      path: 'thoughts',
       select: '-__v'
     })
     .select('-__v')
@@ -39,13 +39,13 @@ const userController = {
   },
   // create new user
   createUser({ body }, res) {
-    user.create(body)
+    User.create(body)
     .then(dbUserData => res.json(dbUserData))
     .catch(err => res.status(400).json(err));
   },
   // update user by id
   updateUser({ params, body }, res) {
-    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
+    User.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
     .then(dbPizzaData => {
       if (!dbPizzaData) {
         res.status(404).json({ message: 'No user found with this id!' });
@@ -57,7 +57,7 @@ const userController = {
   },
   // delete user
   deleteUser({ params }, res) {
-    user.findOneAndDelete({ _id: params.id })
+    User.findOneAndDelete({ _id: params.id })
     .then(dbUserData => {
       if (!dbUserData) {
         res.status(404).json({ message: 'No user found with this id!' });

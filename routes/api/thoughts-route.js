@@ -4,9 +4,10 @@ const {
   removeThought,
   addReaction,
   removeReaction
-} = require('../../controllers/thougths-controller');
+} = require('../../controller/thoughts-controller');
 
-router.route('/:userId').post(addThought);
+router.route('/:userId')
+.post(addThought);
 
 router
 .route('/:userId/:thoughtId')

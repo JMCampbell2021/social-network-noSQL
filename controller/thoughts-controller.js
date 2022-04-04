@@ -1,9 +1,9 @@
-const { thought, User } = require('../models');
+const { Thought, User } = require('../models');
 
 const thoughtController = {
   // add thought to user
   addThought({ params, body}, res) {
-    thought.create(body)
+    Thought.create(body)
     .then(({ _id }) => {
       return User.findOneAndUpdate(
         { _id: params.userId },
@@ -22,7 +22,7 @@ const thoughtController = {
   },
   // add reaction
   addReaction({ params, body }, res) {
-    thought.findOneAndUpdate(
+    Thought.findOneAndUpdate(
       { _id: params.thoughtId },
       { $push: { reactions: body } },
       { new: true, runValidators: true }
@@ -38,7 +38,7 @@ const thoughtController = {
   },
   // remove thought
   removeThought({ params }, res) {
-    thought.findOneAndDelete({ _id: params.thoughtId })
+    Thought.findOneAndDelete({ _id: params.thoughtId })
     .then(deletedThought => {
       if (!deletedThought) {
         return res.status(404).json({ message: 'No thought with this id!' });
@@ -60,7 +60,7 @@ const thoughtController = {
   },
   // remove reaction
   removeReaction({ params }, res) {
-    thought.findOneAndUpdate(
+    Thought.findOneAndUpdate(
       { _id: params.thoughtId },
       { $pull: { replies: { replyId: params.reactionId } } },
       { new: true }
