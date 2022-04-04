@@ -24,6 +24,12 @@ For this challenge/assignement I was task with building an API for a social netw
 
 ## Demostration
 
+![Screen Shot 2022-04-04 at 4 07 26 AM](https://user-images.githubusercontent.com/92699311/161501600-a61f37db-c597-4770-8b72-1cd0c0bd6977.png)
+![Screen Shot 2022-04-04 at 4 07 48 AM](https://user-images.githubusercontent.com/92699311/161501589-492a5fcb-81a1-4706-9c6e-840fe6112760.png)
+![Screen Shot 2022-04-04 at 4 08 11 AM](https://user-images.githubusercontent.com/92699311/161501503-7e799cc3-0bad-46de-9f47-9b0d20f3dbe1.png)
+
+### Video
+
 1 of 3
 https://user-images.githubusercontent.com/92699311/161498473-1e42d34e-64c5-4e7f-9f13-d5181da77c3c.mp4
 
